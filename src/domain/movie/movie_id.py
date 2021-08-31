@@ -1,16 +1,6 @@
-from __future__ import annotations
+from src.domain.common.entity_id import EntityId
 
 
-class MovieId:
-    __value: int
-
+class MovieId(EntityId):
     def __init__(self, value: int) -> None:
-        self.__value = value
-
-    @property
-    def value(self) -> int:
-        return self.__value
-
-    @value.setter
-    def value(self, value: int) -> None:
-        self.__value = value
+        super().__init__(value)

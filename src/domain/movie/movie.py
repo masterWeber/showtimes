@@ -1,13 +1,14 @@
 from __future__ import annotations
 from typing import List
 
+from src.domain.common.entity import Entity
 from src.domain.movie.director import Director
 from src.domain.movie.genre import Genre
 from src.domain.movie.movie_id import MovieId
 from src.domain.movie.movie_id_generator import MovieIdGenerator
 
 
-class Movie:
+class Movie(Entity):
     __id: MovieId
     __name: str
     __description: str
@@ -19,6 +20,9 @@ class Movie:
     __trailer: str
 
     def __init__(self, id_: MovieId, name: str) -> None:
+        if not name.strip():
+            raise ValueError("The `name` cannot be empty.")
+
         self.__id = id_
         self.__name = name
 
