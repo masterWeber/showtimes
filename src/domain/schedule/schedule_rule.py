@@ -9,7 +9,12 @@ class ScheduleRule(Entity):
     __weekday: Weekday
     __day: DayRule
 
-    def __init__(self, id_: ScheduleRuleId, weekday: Weekday, day: DayRule) -> None:
+    def __init__(
+            self,
+            id_: ScheduleRuleId,
+            weekday: Weekday,
+            day: DayRule
+    ) -> None:
         self.__id = id_
         self.__weekday = weekday
         self.__day = day

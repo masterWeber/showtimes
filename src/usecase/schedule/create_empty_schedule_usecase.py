@@ -13,7 +13,11 @@ class CreateEmptyScheduleUseCase(CreateSchedule):
     __schedule_persister: SchedulePersister
     __id_generator: ScheduleIdGenerator
 
-    def __init__(self, schedule_persister: SchedulePersister, id_generator: ScheduleIdGenerator) -> None:
+    def __init__(
+            self,
+            schedule_persister: SchedulePersister,
+            id_generator: ScheduleIdGenerator
+    ) -> None:
         self.__schedule_persister = schedule_persister
         self.__id_generator = id_generator
 

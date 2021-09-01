@@ -15,7 +15,12 @@ class MovieSession(Entity):
     __movie: Union[Movie, None]
     __interval: Interval
 
-    def __init__(self, id_: MovieSessionId, interval: Interval, date_: date, movie: Movie = None) -> None:
+    def __init__(
+            self, id_: MovieSessionId,
+            interval: Interval,
+            date_: date,
+            movie: Movie = None
+    ) -> None:
         self.__id = id_
         self.__date = date_
         self.__movie = movie

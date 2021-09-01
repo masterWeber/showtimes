@@ -11,7 +11,12 @@ class EventId:
     __value: UUID
     __created: datetime
 
-    def __init__(self, value: UUID, secret: object = None, created: datetime = datetime.now()) -> None:
+    def __init__(
+            self,
+            value: UUID,
+            secret: object = None,
+            created: datetime = datetime.now()
+    ) -> None:
         if secret != __SECRET__:
             raise ValueError("Use `generate` instead.")
 

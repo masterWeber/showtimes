@@ -12,7 +12,12 @@ class Schedule(Entity):
     __name: str
     __movie_sessions: List[MovieSession]
 
-    def __init__(self, id_: ScheduleId, name: str, movie_sessions: List[MovieSession] = None) -> None:
+    def __init__(
+            self,
+            id_: ScheduleId,
+            name: str,
+            movie_sessions: List[MovieSession] = None
+    ) -> None:
         self.__id = id_
         self.__name = name
 
