@@ -6,5 +6,5 @@ from src.domain.movie_session.movie_session import MovieSession
 class MovieSessionPersister(ABC):
 
     @abstractmethod
-    def save(self, movie_session: MovieSession) -> bool:
+    def save(self, movie_session: MovieSession) -> None:
         pass
