@@ -1,7 +1,7 @@
-from enum import Flag, auto
+from enum import Enum
 
 
-class DayRuleType(Flag):
-    EVERYONE = auto()
-    RANGE = auto()
-    NUMBER = auto()
+class DayRuleType(Enum):
+    EVERYONE = 'EVERYONE'
+    RANGE = 'RANGE'
+    NUMBER = 'NUMBER'

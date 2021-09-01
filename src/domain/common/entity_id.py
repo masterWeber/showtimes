@@ -1,7 +1,7 @@
-from abc import ABC
+from src.domain.common.value_object import ValueObject
 
 
-class EntityId(ABC):
+class EntityId(ValueObject):
     __value: int
 
     def __init__(self, value: int) -> None:
