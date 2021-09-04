@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 from src.domain.common.entity import Entity
-from src.domain.movie.director_id import DirectorId
-from src.domain.movie.director_id_generator import DirectorIdGenerator
+from src.domain.movie.director.director_id import DirectorId
+from src.domain.movie.director.director_id_generator import DirectorIdGenerator
 
 
 class Director(Entity):

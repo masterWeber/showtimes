@@ -3,10 +3,10 @@ from src.domain.movie.movie_id import MovieId
 from src.domain.movie.movie_id_generator import MovieIdGenerator
 from src.usecase.movie.create_movie import CreateMovie
 from src.usecase.movie.create_movie_request import CreateMovieRequest
-from src.usecase.movie.director_extractor import DirectorExtractor
-from src.usecase.movie.genre_extractor import GenreExtractor
+from src.usecase.movie.director.director_extractor import DirectorExtractor
+from src.usecase.movie.genre.genre_extractor import GenreExtractor
 from src.usecase.movie.movie_persister import MoviePersister
-from src.usecase.movie.rating_extractor import RatingExtractor
+from src.usecase.movie.rating.rating_extractor import RatingExtractor
 
 
 class CreateMovieUseCase(CreateMovie):

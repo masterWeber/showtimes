@@ -2,8 +2,8 @@ from __future__ import annotations
 from datetime import time, datetime, date
 
 from src.domain.common.entity import Entity
-from src.domain.common.time_interval_id import TimeIntervalId
-from src.domain.common.time_interval_id_generator import TimeIntervalIdGenerator
+from src.domain.time_interval.time_interval_id import TimeIntervalId
+from src.domain.time_interval.time_interval_id_generator import TimeIntervalIdGenerator
 
 
 class TimeInterval(Entity):

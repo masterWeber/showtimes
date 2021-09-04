@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import Union, List
 
-from src.domain.movie.genre import Genre
-from src.domain.movie.genre_id import GenreId
+from src.domain.movie.genre.genre import Genre
+from src.domain.movie.genre.genre_id import GenreId
 
 
 class GenreExtractor(ABC):

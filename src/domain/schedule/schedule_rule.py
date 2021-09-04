@@ -1,9 +1,8 @@
 from __future__ import annotations
-from datetime import date
 from typing import Union
 
 from src.domain.common.entity import Entity
-from src.domain.common.time_interval import TimeInterval
+from src.domain.time_interval.time_interval import TimeInterval
 from src.domain.schedule.date_rule import DateRule
 from src.domain.schedule.date_rule_type import DateRuleType
 from src.domain.schedule.schedule_rule_id import ScheduleRuleId

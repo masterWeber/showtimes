@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 from src.domain.common.entity import Entity
-from src.domain.movie.genre_id import GenreId
-from src.domain.movie.genre_id_generator import GenreIdGenerator
+from src.domain.movie.genre.genre_id import GenreId
+from src.domain.movie.genre.genre_id_generator import GenreIdGenerator
 
 
 class Genre(Entity):

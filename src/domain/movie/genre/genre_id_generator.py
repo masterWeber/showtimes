@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from src.domain.movie.genre_id import GenreId
+from src.domain.movie.genre.genre_id import GenreId
 
 
 class GenreIdGenerator(ABC):

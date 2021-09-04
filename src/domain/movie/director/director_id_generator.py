@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from src.domain.movie.director_id import DirectorId
+from src.domain.movie.director.director_id import DirectorId
 
 
 class DirectorIdGenerator(ABC):

@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import List, Union
 
-from src.domain.movie.director import Director
-from src.domain.movie.director_id import DirectorId
+from src.domain.movie.director.director import Director
+from src.domain.movie.director.director_id import DirectorId
 
 
 class DirectorExtractor(ABC):

@@ -3,7 +3,7 @@ from datetime import date
 from typing import Union
 
 from src.domain.common.entity import Entity
-from src.domain.common.time_interval import TimeInterval
+from src.domain.time_interval.time_interval import TimeInterval
 from src.domain.movie.movie import Movie
 from src.domain.movie_session.movie_session_id import MovieSessionId
 from src.domain.movie_session.movie_session_id_generator import MovieSessionIdGenerator
@@ -58,9 +58,10 @@ class MovieSession(Entity):
     def create(
             id_generator: MovieSessionIdGenerator,
             interval: TimeInterval,
-            date_: date
+            date_: date,
+            movie: Movie = None
     ) -> MovieSession:
-        return MovieSession(id_generator.generate(), interval, date_)
+        return MovieSession(id_generator.generate(), interval, date_, movie)
 
     def movie_is_fit_in_interval(self) -> bool:
         return self.free_time() >= 0

@@ -2,8 +2,8 @@ from __future__ import annotations
 from typing import List, Union
 
 from src.domain.common.entity import Entity
-from src.domain.movie.director import Director
-from src.domain.movie.genre import Genre
+from src.domain.movie.director.director import Director
+from src.domain.movie.genre.genre import Genre
 from src.domain.movie.movie_id import MovieId
 from src.domain.movie.movie_id_generator import MovieIdGenerator
 from src.domain.movie.rating.rating import Rating
