@@ -1,0 +1,6 @@
+from src.domain.common.entity_id import EntityId
+
+
+class RatingId(EntityId):
+    def __init__(self, value: int) -> None:
+        super().__init__(value)

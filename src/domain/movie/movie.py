@@ -6,6 +6,7 @@ from src.domain.movie.director import Director
 from src.domain.movie.genre import Genre
 from src.domain.movie.movie_id import MovieId
 from src.domain.movie.movie_id_generator import MovieIdGenerator
+from src.domain.movie.rating.rating import Rating
 
 
 class Movie(Entity):
@@ -13,7 +14,8 @@ class Movie(Entity):
     __name: str
     __duration: int
     __year: int
-    __genres: List[Genre]
+    __genres: List[Genre] = []
+    __ratings: List[Rating] = []
     __description: Union[str, None]
     __director: Union[Director, None]
     __poster: Union[str, None]
@@ -61,6 +63,17 @@ class Movie(Entity):
     @year.setter
     def year(self, year: int) -> None:
         self.__year = year
+
+    @property
+    def ratings(self) -> List[Rating]:
+        return self.__ratings
+
+    @ratings.setter
+    def ratings(self, ratings: List[Rating]) -> None:
+        self.__ratings = ratings
+
+    def add_rating(self, rating: Rating) -> None:
+        self.__ratings.append(rating)
 
     @property
     def description(self) -> str:
