@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import List
+from typing import List, Union
 
 from src.domain.common.entity import Entity
 from src.domain.movie.director import Director
@@ -11,20 +11,28 @@ from src.domain.movie.movie_id_generator import MovieIdGenerator
 class Movie(Entity):
     __id: MovieId
     __name: str
-    __description: str
-    __genres: List[Genre]
-    __director: Director
     __duration: int
     __year: int
-    __poster: str
-    __trailer: str
+    __genres: List[Genre]
+    __description: Union[str, None]
+    __director: Union[Director, None]
+    __poster: Union[str, None]
+    __trailer: Union[str, None]
 
-    def __init__(self, id_: MovieId, name: str) -> None:
+    def __init__(
+            self,
+            id_: MovieId,
+            name: str,
+            duration: int,
+            year: int
+    ) -> None:
         if not name.strip():
             raise ValueError("The `name` cannot be empty.")
 
         self.__id = id_
         self.__name = name
+        self.__duration = duration
+        self.__year = year
 
     @property
     def id(self) -> MovieId:
@@ -37,33 +45,6 @@ class Movie(Entity):
     @name.setter
     def name(self, name: str) -> None:
         self.__name = name
-
-    @property
-    def description(self) -> str:
-        return self.__description
-
-    @description.setter
-    def description(self, description: str) -> None:
-        self.__description = description
-
-    @property
-    def genres(self) -> List[Genre]:
-        return self.__genres
-
-    @genres.setter
-    def genres(self, genres: List[Genre]) -> None:
-        self.__genres = genres
-
-    def add_genre(self, genre: Genre) -> None:
-        self.__genres.append(genre)
-
-    @property
-    def director(self) -> Director:
-        return self.__director
-
-    @director.setter
-    def director(self, director: Director) -> None:
-        self.__director = director
 
     @property
     def duration(self) -> int:
@@ -82,21 +63,58 @@ class Movie(Entity):
         self.__year = year
 
     @property
-    def poster(self) -> str:
+    def description(self) -> str:
+        return self.__description
+
+    @description.setter
+    def description(self, description: Union[str, None]) -> None:
+        self.__description = description
+
+    @property
+    def genres(self) -> List[Genre]:
+        return self.__genres
+
+    @genres.setter
+    def genres(self, genres: List[Genre]) -> None:
+        self.__genres = genres
+
+    def add_genre(self, genre: Genre) -> None:
+        self.__genres.append(genre)
+
+    @property
+    def director(self) -> Union[Director, None]:
+        return self.__director
+
+    @director.setter
+    def director(self, director: Union[Director, None]) -> None:
+        self.__director = director
+
+    @property
+    def poster(self) -> Union[str, None]:
         return self.__poster
 
     @poster.setter
-    def poster(self, poster: str) -> None:
+    def poster(self, poster: Union[str, None]) -> None:
         self.__poster = poster
 
     @property
-    def trailer(self) -> str:
+    def trailer(self) -> Union[str, None]:
         return self.__trailer
 
     @trailer.setter
-    def trailer(self, trailer: str) -> None:
+    def trailer(self, trailer: Union[str, None]) -> None:
         self.__trailer = trailer
 
     @staticmethod
-    def create(id_generator: MovieIdGenerator, name: str) -> Movie:
-        return Movie(id_generator.generate(), name)
+    def create(
+            id_generator: MovieIdGenerator,
+            name: str,
+            duration: int,
+            year: int
+    ) -> Movie:
+        return Movie(
+            id_generator.generate(),
+            name,
+            duration,
+            year
+        )
