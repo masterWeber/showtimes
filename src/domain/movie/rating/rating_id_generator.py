@@ -1,10 +1,10 @@
 from abc import ABC, abstractmethod
 
-from src.domain.movie.movie_id import MovieId
+from src.domain.movie.rating.rating_id import RatingId
 
 
 class RatingIdGenerator(ABC):
 
     @abstractmethod
-    def generate(self) -> MovieId:
+    def generate(self) -> RatingId:
         pass

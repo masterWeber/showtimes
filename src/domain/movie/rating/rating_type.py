@@ -1,5 +1,8 @@
+from __future__ import annotations
+
 from src.domain.common.entity import Entity
 from src.domain.movie.rating.rating_type_id import RatingTypeId
+from src.domain.movie.rating.rating_type_id_generator import RatingTypeIdGenerator
 
 
 class RatingType(Entity):
@@ -24,3 +27,7 @@ class RatingType(Entity):
     @name.setter
     def name(self, name: str) -> None:
         self.__name = name
+
+    @staticmethod
+    def create(id_generator: RatingTypeIdGenerator, name: str) -> RatingType:
+        return RatingType(id_generator.generate(), name)
