@@ -16,7 +16,8 @@ class MovieSession(Entity):
     __interval: TimeInterval
 
     def __init__(
-            self, id_: MovieSessionId,
+            self,
+            id_: MovieSessionId,
             interval: TimeInterval,
             date_: date,
             movie: Movie = None
@@ -59,7 +60,7 @@ class MovieSession(Entity):
             id_generator: MovieSessionIdGenerator,
             interval: TimeInterval,
             date_: date,
-            movie: Movie = None
+            movie: Union[Movie, None] = None
     ) -> MovieSession:
         return MovieSession(id_generator.generate(), interval, date_, movie)
 
@@ -74,3 +75,6 @@ class MovieSession(Entity):
 
     def is_empty(self) -> bool:
         return self.movie is None
+
+    def remove_movie(self) -> None:
+        self.movie = None

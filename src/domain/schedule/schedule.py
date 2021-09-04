@@ -3,6 +3,7 @@ from typing import List
 
 from src.domain.common.entity import Entity
 from src.domain.movie_session.movie_session import MovieSession
+from src.domain.movie_session.movie_session_id import MovieSessionId
 from src.domain.schedule.date_interval import DateInterval
 from src.domain.schedule.schedule_id import ScheduleId
 from src.domain.schedule.schedule_id_generator import ScheduleIdGenerator
@@ -50,6 +51,9 @@ class Schedule(Entity):
 
     def add_movie_session(self, movie_session: MovieSession) -> None:
         self.__movie_sessions.append(movie_session)
+
+    def remove_movie_session(self, movie_session: MovieSession) -> None:
+        self.__movie_sessions.remove(movie_session)
 
     @staticmethod
     def create(id_generator: ScheduleIdGenerator, name: str, ) -> Schedule:

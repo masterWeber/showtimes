@@ -6,19 +6,16 @@ from src.domain.schedule.schedule_id import ScheduleId
 
 
 @dataclass(frozen=True)
-class AddMovieSessionToScheduleRequest:
+class RemoveMovieSessionFromScheduleRequest:
     movie_session_id: MovieSessionId
     schedule_id: ScheduleId
-    date: date
 
     @staticmethod
     def from_(
             movie_session_id: int,
             schedule_id: int,
-            date_: date,
-    ) -> AddMovieSessionToScheduleRequest:
-        return AddMovieSessionToScheduleRequest(
+    ) -> RemoveMovieSessionFromScheduleRequest:
+        return RemoveMovieSessionFromScheduleRequest(
             MovieSessionId(movie_session_id),
             ScheduleId(schedule_id),
-            date_
         )

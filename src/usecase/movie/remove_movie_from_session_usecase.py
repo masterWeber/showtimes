@@ -20,7 +20,7 @@ class RemoveMovieFromSessionUseCase(RemoveMovieFromSession):
     def execute(self, request: RemoveMovieFromSessionRequest) -> None:
         movie_session = self.__movie_session_extractor.get_by_id(request.movie_session_id)
         if movie_session is None:
-            raise ValueError('Movie session is not found.')
+            raise ValueError('Movie session not found.')
 
-        movie_session.movie = None
+        movie_session.remove_movie()
         self.__movie_session_persister.save(movie_session)

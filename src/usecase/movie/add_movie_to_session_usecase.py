@@ -23,11 +23,11 @@ class AddMovieToSessionUseCase(AddMovieToSession):
     def execute(self, request: AddMovieToSessionRequest) -> None:
         movie = self.__movie_extractor.get_by_id(request.movie_id)
         if movie is None:
-            raise ValueError('Movie is not found.')
+            raise ValueError('Movie not found.')
 
         movie_session = self.__movie_session_extractor.get_by_id(request.movie_session_id)
         if movie_session is None:
-            raise ValueError('Movie session is not found.')
+            raise ValueError('Movie session not found.')
 
         movie_session.movie = movie
         self.__movie_session_persister.save(movie_session)
