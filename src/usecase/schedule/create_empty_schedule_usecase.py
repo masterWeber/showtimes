@@ -1,6 +1,8 @@
 from typing import List
 
 from src.domain.movie_session.movie_session import MovieSession
+from src.domain.movie_session.movie_session_id_generator import MovieSessionIdGenerator
+from src.domain.schedule.date_interval import DateInterval
 from src.domain.schedule.schedule import Schedule
 from src.domain.schedule.schedule_id_generator import ScheduleIdGenerator
 from src.domain.schedule.schedule_rule import ScheduleRule
@@ -11,36 +13,46 @@ from src.usecase.schedule.schedule_persister import SchedulePersister
 
 class CreateEmptyScheduleUseCase(CreateSchedule):
     __schedule_persister: SchedulePersister
-    __id_generator: ScheduleIdGenerator
+    __schedule_id_generator: ScheduleIdGenerator
+    __movie_session_id_generator: MovieSessionIdGenerator
 
     def __init__(
             self,
             schedule_persister: SchedulePersister,
-            id_generator: ScheduleIdGenerator
+            schedule_id_generator: ScheduleIdGenerator,
+            movie_session_id_generator: MovieSessionIdGenerator
     ) -> None:
         self.__schedule_persister = schedule_persister
-        self.__id_generator = id_generator
+        self.__schedule_id_generator = schedule_id_generator
+        self.__movie_session_id_generator = movie_session_id_generator
 
     def execute(self, request: CreateScheduleRequest) -> Schedule:
-        schedule = Schedule.create(
-            self.__id_generator,
-            request.name,
+        schedule = Schedule.create(self.__schedule_id_generator, request.name)
+        schedule.movie_sessions = self.__create_movie_sessions(
+            request.rules, request.date_interval
         )
-
-        movie_sessions: List[MovieSession] = []
-
-        for rule in request.rules:
-            movie_sessions.extend(self.__create_movie_session(rule))
-
-        movie_sessions.sort(key=lambda ms: ms.date)
-
-        for movie_session in movie_sessions:
-            schedule.add_movie_session(movie_session)
 
         self.__schedule_persister.save(schedule)
 
         return schedule
 
-    def __create_movie_session(self, rule: ScheduleRule) -> List[MovieSession]:
-        # TODO: create movie sessions by rule
-        return []
+    def __create_movie_sessions(
+            self,
+            rules: List[ScheduleRule],
+            date_interval: DateInterval
+    ) -> List[MovieSession]:
+        movie_sessions: List[MovieSession] = []
+
+        date_list = date_interval.date_list()
+
+        for date in date_list:
+            for rule in rules:
+                if rule.match(date):
+                    movie_session = MovieSession.create(
+                        self.__movie_session_id_generator,
+                        rule.time_interval,
+                        date
+                    )
+                    movie_sessions.append(movie_session)
+
+        return sorted(movie_sessions, key=lambda ms: ms.date)

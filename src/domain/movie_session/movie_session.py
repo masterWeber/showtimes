@@ -3,7 +3,7 @@ from datetime import date
 from typing import Union
 
 from src.domain.common.entity import Entity
-from src.domain.movie_session.interval import Interval
+from src.domain.common.time_interval import TimeInterval
 from src.domain.movie.movie import Movie
 from src.domain.movie_session.movie_session_id import MovieSessionId
 from src.domain.movie_session.movie_session_id_generator import MovieSessionIdGenerator
@@ -13,11 +13,11 @@ class MovieSession(Entity):
     __id: MovieSessionId
     __date: date
     __movie: Union[Movie, None]
-    __interval: Interval
+    __interval: TimeInterval
 
     def __init__(
             self, id_: MovieSessionId,
-            interval: Interval,
+            interval: TimeInterval,
             date_: date,
             movie: Movie = None
     ) -> None:
@@ -39,11 +39,11 @@ class MovieSession(Entity):
         self.__movie = movie
 
     @property
-    def interval(self) -> Interval:
+    def interval(self) -> TimeInterval:
         return self.__interval
 
     @interval.setter
-    def interval(self, interval: Interval) -> None:
+    def interval(self, interval: TimeInterval) -> None:
         self.__interval = interval
 
     @property
@@ -55,13 +55,17 @@ class MovieSession(Entity):
         self.__date = date_
 
     @staticmethod
-    def create(id_generator: MovieSessionIdGenerator, interval: Interval, date_: date) -> MovieSession:
+    def create(
+            id_generator: MovieSessionIdGenerator,
+            interval: TimeInterval,
+            date_: date
+    ) -> MovieSession:
         return MovieSession(id_generator.generate(), interval, date_)
 
     def movie_is_fit_in_interval(self) -> bool:
-        return self.get_free_time() >= 0
+        return self.free_time() >= 0
 
-    def get_free_time(self) -> int:
+    def free_time(self) -> int:
         if self.is_empty():
             raise ValueError("`Movie` not specified.")
 

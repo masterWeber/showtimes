@@ -18,12 +18,10 @@ class Schedule(Entity):
             self,
             id_: ScheduleId,
             name: str,
-            date_interval: DateInterval,
             movie_sessions: List[MovieSession] = None
     ) -> None:
         self.__id = id_
         self.__name = name
-        self.__date_interval = date_interval
 
         if movie_sessions is None:
             self.__movie_sessions = []
@@ -43,14 +41,6 @@ class Schedule(Entity):
         self.__name = name
 
     @property
-    def date_interval(self) -> DateInterval:
-        return self.__date_interval
-
-    @date_interval.setter
-    def date_interval(self, date_interval: DateInterval) -> None:
-        self.__date_interval = date_interval
-
-    @property
     def movie_sessions(self) -> List[MovieSession]:
         return self.__movie_sessions
 
@@ -62,9 +52,5 @@ class Schedule(Entity):
         self.__movie_sessions.append(movie_session)
 
     @staticmethod
-    def create(
-            id_generator: ScheduleIdGenerator,
-            name: str,
-            date_interval: DateInterval
-    ) -> Schedule:
-        return Schedule(id_generator.generate(), name, date_interval)
+    def create(id_generator: ScheduleIdGenerator, name: str, ) -> Schedule:
+        return Schedule(id_generator.generate(), name)

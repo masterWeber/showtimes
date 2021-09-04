@@ -2,22 +2,22 @@ from __future__ import annotations
 from datetime import time, datetime, date
 
 from src.domain.common.entity import Entity
-from src.domain.movie_session.interval_id import IntervalId
-from src.domain.movie_session.interval_id_generator import IntervalIdGenerator
+from src.domain.common.time_interval_id import TimeIntervalId
+from src.domain.common.time_interval_id_generator import TimeIntervalIdGenerator
 
 
-class Interval(Entity):
-    __id: IntervalId
+class TimeInterval(Entity):
+    __id: TimeIntervalId
     __start: time
     __end: time
 
-    def __init__(self, id_: IntervalId, start: time, end: time) -> None:
+    def __init__(self, id_: TimeIntervalId, start: time, end: time) -> None:
         self.__id = id_
         self.__start = start
         self.__end = end
 
     @property
-    def id(self) -> IntervalId:
+    def id(self) -> TimeIntervalId:
         return self.__id
 
     @property
@@ -37,8 +37,8 @@ class Interval(Entity):
         self.__end = end
 
     @staticmethod
-    def create(id_generator: IntervalIdGenerator, start: time, end: time) -> Interval:
-        return Interval(id_generator.generate(), start, end)
+    def create(id_generator: TimeIntervalIdGenerator, start: time, end: time) -> TimeInterval:
+        return TimeInterval(id_generator.generate(), start, end)
 
     @property
     def duration(self) -> int:

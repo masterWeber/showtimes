@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class DayRuleType(Enum):
+class DateRuleType(Enum):
     EVERYONE = 'EVERYONE'
     RANGE = 'RANGE'
     NUMBER = 'NUMBER'
