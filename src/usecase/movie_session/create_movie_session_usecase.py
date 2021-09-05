@@ -2,17 +2,13 @@ from src.domain.movie_session.movie_session import MovieSession
 from src.domain.movie_session.movie_session_id import MovieSessionId
 from src.domain.movie_session.movie_session_id_generator import MovieSessionIdGenerator
 from src.usecase.movie.movie_extractor import MovieExtractor
+from src.usecase.movie_session.create_movie_session import CreateMovieSession
 from src.usecase.movie_session.create_movie_session_request import CreateMovieSessionRequest
-from src.usecase.movie_session.movie_session_extractor import MovieSessionExtractor
 from src.usecase.movie_session.movie_session_persister import MovieSessionPersister
-from src.usecase.movie_session.add_movie_session_to_schedule import AddMovieSessionToSchedule
-from src.usecase.movie_session.add_movie_session_to_schedule_request import AddMovieSessionToScheduleRequest
-from src.usecase.schedule.schedule_extractor import ScheduleExtractor
-from src.usecase.schedule.schedule_persister import SchedulePersister
 from src.usecase.time_interval.time_interval_extractor import TimeIntervalExtractor
 
 
-class CreateMovieSessionUseCase(AddMovieSessionToSchedule):
+class CreateMovieSessionUseCase(CreateMovieSession):
     __movie_session_id_generator: MovieSessionIdGenerator
     __movie_session_persister: MovieSessionPersister
     __time_interval_extractor: TimeIntervalExtractor

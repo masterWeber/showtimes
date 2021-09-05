@@ -2,20 +2,23 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from src.domain.movie_session.movie_session_id import MovieSessionId
-from src.domain.schedule.schedule_id import ScheduleId
+from src.domain.schedule.schedule_id import MovieSessionId
 
 
 @dataclass(frozen=True)
-class RemoveMovieSessionFromScheduleRequest:
+class AddMovieSessionToScheduleRequest:
     movie_session_id: MovieSessionId
-    schedule_id: ScheduleId
+    schedule_id: MovieSessionId
+    date: date
 
     @staticmethod
     def from_(
             movie_session_id: int,
             schedule_id: int,
-    ) -> RemoveMovieSessionFromScheduleRequest:
-        return RemoveMovieSessionFromScheduleRequest(
+            date_: date,
+    ) -> AddMovieSessionToScheduleRequest:
+        return AddMovieSessionToScheduleRequest(
             MovieSessionId(movie_session_id),
-            ScheduleId(schedule_id),
+            MovieSessionId(schedule_id),
+            date_
         )

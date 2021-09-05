@@ -1,5 +1,5 @@
-from src.usecase.movie.add_movie_to_session import AddMovieToSession
-from src.usecase.movie.add_movie_to_session_request import AddMovieToSessionRequest
+from src.usecase.movie_session.add_movie_to_session import AddMovieToSession
+from src.usecase.movie_session.add_movie_to_session_request import AddMovieToSessionRequest
 from src.usecase.movie.movie_extractor import MovieExtractor
 from src.usecase.movie_session.movie_session_extractor import MovieSessionExtractor
 from src.usecase.movie_session.movie_session_persister import MovieSessionPersister

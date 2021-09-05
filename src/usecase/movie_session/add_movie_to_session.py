@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from src.usecase.movie.add_movie_to_session_request import AddMovieToSessionRequest
+from src.usecase.movie_session.add_movie_to_session_request import AddMovieToSessionRequest
 
 
 class AddMovieToSession(ABC):

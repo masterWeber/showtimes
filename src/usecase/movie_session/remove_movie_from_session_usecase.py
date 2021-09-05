@@ -1,6 +1,5 @@
-from src.usecase.movie.movie_extractor import MovieExtractor
-from src.usecase.movie.remove_movie_from_session import RemoveMovieFromSession
-from src.usecase.movie.remove_movie_from_session_request import RemoveMovieFromSessionRequest
+from src.usecase.movie_session.remove_movie_from_session import RemoveMovieFromSession
+from src.usecase.movie_session.remove_movie_from_session_request import RemoveMovieFromSessionRequest
 from src.usecase.movie_session.movie_session_extractor import MovieSessionExtractor
 from src.usecase.movie_session.movie_session_persister import MovieSessionPersister
 

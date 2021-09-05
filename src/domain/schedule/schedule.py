@@ -5,19 +5,19 @@ from src.domain.common.entity import Entity
 from src.domain.movie_session.movie_session import MovieSession
 from src.domain.movie_session.movie_session_id import MovieSessionId
 from src.domain.schedule.date_interval import DateInterval
-from src.domain.schedule.schedule_id import ScheduleId
+from src.domain.schedule.schedule_id import MovieSessionId
 from src.domain.schedule.schedule_id_generator import ScheduleIdGenerator
 
 
 class Schedule(Entity):
-    __id: ScheduleId
+    __id: MovieSessionId
     __name: str
     __date_interval: DateInterval
     __movie_sessions: List[MovieSession]
 
     def __init__(
             self,
-            id_: ScheduleId,
+            id_: MovieSessionId,
             name: str,
             movie_sessions: List[MovieSession] = None
     ) -> None:
@@ -30,7 +30,7 @@ class Schedule(Entity):
             self.__movie_sessions = movie_sessions
 
     @property
-    def id(self) -> ScheduleId:
+    def id(self) -> MovieSessionId:
         return self.__id
 
     @property
