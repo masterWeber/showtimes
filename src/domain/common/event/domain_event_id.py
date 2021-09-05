@@ -7,7 +7,7 @@ from uuid import UUID
 __SECRET__ = object()
 
 
-class EventId:
+class DomainEventId:
     __value: UUID
     __created: datetime
 
@@ -24,5 +24,5 @@ class EventId:
         self.__created = created
 
     @staticmethod
-    def generate() -> EventId:
-        return EventId(uuid.uuid1(), __SECRET__)
+    def generate() -> DomainEventId:
+        return DomainEventId(uuid.uuid1(), __SECRET__)
