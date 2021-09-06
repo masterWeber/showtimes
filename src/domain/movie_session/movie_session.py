@@ -78,3 +78,6 @@ class MovieSession(Entity):
 
     def remove_movie(self) -> None:
         self.movie = None
+
+    def reschedule(self, interval: TimeInterval) -> None:
+        self.interval = interval
