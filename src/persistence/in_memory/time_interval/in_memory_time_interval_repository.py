@@ -10,6 +10,9 @@ from src.usecase.time_interval.time_interval_persister import TimeIntervalPersis
 class InMemoryTimeIntervalRepository(TimeIntervalExtractor, TimeIntervalPersister):
     __storage: Dict = {}
 
+    def __init__(self, event_publisher: DomainEventPublisher):
+        self.__eventPublisher = event_publisher
+
     def get_by_id(self, time_interval_id: TimeIntervalId) -> Union[TimeInterval, None]:
         return self.__storage.get(time_interval_id)
 

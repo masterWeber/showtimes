@@ -2,13 +2,13 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from src.domain.movie_session.movie_session_id import MovieSessionId
-from src.domain.schedule.schedule_id import MovieSessionId
+from src.domain.schedule.schedule_id import ScheduleId
 
 
 @dataclass(frozen=True)
 class RemoveMovieSessionFromScheduleRequest:
     movie_session_id: MovieSessionId
-    schedule_id: MovieSessionId
+    schedule_id: ScheduleId
 
     @staticmethod
     def from_(
@@ -17,5 +17,5 @@ class RemoveMovieSessionFromScheduleRequest:
     ) -> RemoveMovieSessionFromScheduleRequest:
         return RemoveMovieSessionFromScheduleRequest(
             MovieSessionId(movie_session_id),
-            MovieSessionId(schedule_id),
+            ScheduleId(schedule_id),
         )
