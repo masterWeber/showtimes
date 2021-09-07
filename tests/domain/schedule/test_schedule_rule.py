@@ -12,8 +12,8 @@ from src.domain.schedule.schedule_rule.schedule_rule_id import ScheduleRuleId
 class TestScheduleRule(TestCase):
 
     @patch('src.domain.time_interval.time_interval.TimeInterval')
-    @patch('src.domain.schedule.schedule_rule_id_generator.ScheduleRuleIdGenerator')
-    @patch('src.domain.schedule.date_rule.DateRule')
+    @patch('src.domain.schedule.schedule_rule.schedule_rule_id_generator.ScheduleRuleIdGenerator')
+    @patch('src.domain.schedule.schedule_rule.date_rule.DateRule')
     def test_create(
             self,
             time_interval_mock,
