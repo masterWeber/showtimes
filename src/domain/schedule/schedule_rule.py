@@ -91,6 +91,6 @@ class ScheduleRule(Entity):
 
     def __match_weekday(self, weekday: int) -> bool:
         if self.weekday is not None:
-            return int(self.weekday) == weekday
+            return int(self.weekday.value) == weekday
 
         return True
