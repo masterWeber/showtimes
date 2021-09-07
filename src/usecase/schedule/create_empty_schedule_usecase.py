@@ -2,10 +2,10 @@ from typing import List
 
 from src.domain.movie_session.movie_session import MovieSession
 from src.domain.movie_session.movie_session_id_generator import MovieSessionIdGenerator
-from src.domain.schedule.date_interval import DateInterval
+from src.domain.schedule.schedule_rule.date_interval import DateInterval
 from src.domain.schedule.schedule import Schedule
 from src.domain.schedule.schedule_id_generator import ScheduleIdGenerator
-from src.domain.schedule.schedule_rule import ScheduleRule
+from src.domain.schedule.schedule_rule.schedule_rule import ScheduleRule
 from src.usecase.schedule.create_schedule import CreateSchedule
 from src.usecase.schedule.create_empty_schedule_request import CreateScheduleRequest
 from src.usecase.schedule.schedule_persister import SchedulePersister

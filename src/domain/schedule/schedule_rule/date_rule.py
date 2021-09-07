@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from src.domain.common.value_object import ValueObject
-from src.domain.schedule.date_rule_type import DateRuleType
+from src.domain.schedule.schedule_rule.date_rule_type import DateRuleType
 
 
 class DateRule(ValueObject):

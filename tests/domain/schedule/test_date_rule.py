@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from src.domain.schedule.date_rule import DateRule
-from src.domain.schedule.date_rule_type import DateRuleType
+from src.domain.schedule.schedule_rule.date_rule import DateRule
+from src.domain.schedule.schedule_rule.date_rule_type import DateRuleType
 
 
 class TestDateRule(TestCase):

@@ -3,10 +3,10 @@ from datetime import date
 from unittest import TestCase
 from unittest.mock import patch
 
-from src.domain.schedule.date_rule import DateRule
-from src.domain.schedule.schedule_rule import ScheduleRule
-from src.domain.schedule.weekday import Weekday
-from src.domain.schedule.schedule_rule_id import ScheduleRuleId
+from src.domain.schedule.schedule_rule.date_rule import DateRule
+from src.domain.schedule.schedule_rule.schedule_rule import ScheduleRule
+from src.domain.common.weekday import Weekday
+from src.domain.schedule.schedule_rule.schedule_rule_id import ScheduleRuleId
 
 
 class TestScheduleRule(TestCase):

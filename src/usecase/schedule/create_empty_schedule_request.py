@@ -4,8 +4,8 @@ from dataclasses import dataclass
 from datetime import date
 from typing import List
 
-from src.domain.schedule.date_interval import DateInterval
-from src.domain.schedule.schedule_rule import ScheduleRule
+from src.domain.schedule.schedule_rule.date_interval import DateInterval
+from src.domain.schedule.schedule_rule.schedule_rule import ScheduleRule
 
 
 @dataclass(frozen=True)
