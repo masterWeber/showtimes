@@ -2,6 +2,7 @@ from __future__ import annotations
 from typing import List, Union
 
 from src.common.entity import Entity
+from src.showtimes.domain.movie.country.country import Country
 from src.showtimes.domain.movie.director.director import Director
 from src.showtimes.domain.movie.genre.genre import Genre
 from src.showtimes.domain.movie.movie_id import MovieId
@@ -14,6 +15,7 @@ class Movie(Entity):
     __name: str
     __duration: int
     __year: int
+    __countries: List[Country] = []
     __genres: List[Genre] = []
     __ratings: List[Rating] = []
     __description: Union[str, None]
@@ -91,6 +93,17 @@ class Movie(Entity):
 
     def add_genre(self, genre: Genre) -> None:
         self.__genres.append(genre)
+
+    @property
+    def countries(self) -> List[Country]:
+        return self.__countries
+
+    @countries.setter
+    def countries(self, countries: List[Country]) -> None:
+        self.__countries = countries
+
+    def add_country(self, country: Country) -> None:
+        self.__countries.append(country)
 
     @property
     def director(self) -> Union[Director, None]:
