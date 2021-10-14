@@ -1,13 +1,16 @@
 [[source]]
-url = "https://github.com/masterWeber/showtimes"
+url = "https://pypi.python.org/simple"
 verify_ssl = true
-name = "Showtimes"
+name = "pypi"
 
 [packages]
-pytube = "~=11.0"
-pymediainfo = "~=5.1"
+pytube = "==11.*"
+pymediainfo = "==5.*"
+kinopoisk-api-unofficial-client = "==1.*"
+dependency-injector = "==4.*"
 
 [dev-packages]
+pytest = "*"
 
 [requires]
 python_version = "3.9"
