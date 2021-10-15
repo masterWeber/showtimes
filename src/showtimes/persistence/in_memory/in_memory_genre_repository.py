@@ -1,4 +1,4 @@
-from typing import List, Union, Dict
+from typing import List, Dict, Optional
 
 from src.common.event.domain_event_publisher import DomainEventPublisher
 from src.showtimes.domain.movie.genre.genre import Genre
@@ -14,10 +14,10 @@ class InMemoryGenreRepository(GenreExtractor, GenrePersister):
     def __init__(self, event_publisher: DomainEventPublisher):
         self.__eventPublisher = event_publisher
 
-    def get_by_id(self, genre_id: GenreId) -> Union[Genre, None]:
+    def get_by_id(self, genre_id: GenreId) -> Optional[Genre]:
         return self.__storage.get(genre_id)
 
-    def get_by_name(self, name: str) -> Union[Genre, None]:
+    def get_by_name(self, name: str) -> Optional[Genre]:
         for genre in list(self.__storage.values()):
             if genre.name == name:
                 return genre

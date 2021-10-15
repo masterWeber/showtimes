@@ -1,4 +1,4 @@
-from typing import List, Union, Dict
+from typing import List, Dict, Optional
 
 from src.common.event.domain_event_publisher import DomainEventPublisher
 from src.folder_scan.domain.file_info import FileInfo
@@ -14,7 +14,7 @@ class InMemoryFileInfoRepository(FileInfoExtractor, FileInfoPersister):
     def __init__(self, event_publisher: DomainEventPublisher):
         self.__eventPublisher = event_publisher
 
-    def get_by_id(self, file_info_id: FileInfoId) -> Union[FileInfo, None]:
+    def get_by_id(self, file_info_id: FileInfoId) -> Optional[FileInfo]:
         return self.__storage.get(file_info_id)
 
     def get_by_name(self, name: str) -> List[FileInfo]:
@@ -26,7 +26,7 @@ class InMemoryFileInfoRepository(FileInfoExtractor, FileInfoPersister):
 
         return matches
 
-    def get_by_name_and_duration(self, name: str, duration: int) -> Union[FileInfo, None]:
+    def get_by_name_and_duration(self, name: str, duration: int) -> Optional[FileInfo]:
         for file_info in list(self.__storage.values()):
             if file_info.name == name and file_info.duration == duration:
                 return file_info

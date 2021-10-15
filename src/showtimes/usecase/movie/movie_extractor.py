@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import List, Union
+from typing import List, Optional
 
 from src.showtimes.domain.movie.movie import Movie
 from src.showtimes.domain.movie.movie_id import MovieId
@@ -8,7 +8,7 @@ from src.showtimes.domain.movie.movie_id import MovieId
 class MovieExtractor(ABC):
 
     @abstractmethod
-    def get_by_id(self, movie_id: MovieId) -> Union[Movie, None]:
+    def get_by_id(self, movie_id: MovieId) -> Optional[Movie]:
         pass
 
     @abstractmethod
@@ -16,7 +16,7 @@ class MovieExtractor(ABC):
         pass
 
     @abstractmethod
-    def get_by_name_and_duration(self, name: str, duration: int) -> Union[Movie, None]:
+    def get_by_name_and_duration(self, name: str, duration: int) -> Optional[Movie]:
         pass
 
     @abstractmethod

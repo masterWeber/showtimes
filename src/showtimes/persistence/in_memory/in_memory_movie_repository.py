@@ -1,4 +1,4 @@
-from typing import List, Union, Dict
+from typing import List, Dict, Optional
 
 from src.common.event.domain_event_publisher import DomainEventPublisher
 from src.showtimes.domain.movie.movie import Movie
@@ -14,7 +14,7 @@ class InMemoryMovieRepository(MovieExtractor, MoviePersister):
     def __init__(self, event_publisher: DomainEventPublisher):
         self.__eventPublisher = event_publisher
 
-    def get_by_id(self, movie_id: MovieId) -> Union[Movie, None]:
+    def get_by_id(self, movie_id: MovieId) -> Optional[Movie]:
         return self.__storage.get(movie_id)
 
     def get_by_name(self, name: str) -> List[Movie]:
@@ -26,7 +26,7 @@ class InMemoryMovieRepository(MovieExtractor, MoviePersister):
 
         return matches
 
-    def get_by_name_and_duration(self, name: str, duration: int) -> Union[Movie, None]:
+    def get_by_name_and_duration(self, name: str, duration: int) -> Optional[Movie]:
         for movie in list(self.__storage.values()):
             if movie.name == name and movie.duration == duration:
                 return movie

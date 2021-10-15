@@ -1,4 +1,4 @@
-from typing import List, Union, Dict
+from typing import List, Dict, Optional
 
 from src.common.event.domain_event_publisher import DomainEventPublisher
 from src.showtimes.domain.schedule.schedule import Schedule
@@ -14,7 +14,7 @@ class InMemoryScheduleRepository(ScheduleExtractor, SchedulePersister):
     def __init__(self, event_publisher: DomainEventPublisher):
         self.__eventPublisher = event_publisher
 
-    def get_by_id(self, schedule_id: ScheduleId) -> Union[Schedule, None]:
+    def get_by_id(self, schedule_id: ScheduleId) -> Optional[Schedule]:
         return self.__storage.get(schedule_id)
 
     def get_all(self) -> List[Schedule]:

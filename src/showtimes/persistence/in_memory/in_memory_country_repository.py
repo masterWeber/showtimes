@@ -1,4 +1,4 @@
-from typing import List, Union, Dict
+from typing import List, Dict, Optional
 
 from src.common.event.domain_event_publisher import DomainEventPublisher
 from src.showtimes.domain.movie.country.country import Country
@@ -14,10 +14,10 @@ class InMemoryCountryRepository(CountryExtractor, CountryPersister):
     def __init__(self, event_publisher: DomainEventPublisher):
         self.__eventPublisher = event_publisher
 
-    def get_by_id(self, country_id: CountryId) -> Union[Country, None]:
+    def get_by_id(self, country_id: CountryId) -> Optional[Country]:
         return self.__storage.get(country_id)
 
-    def get_by_name(self, name: str) -> Union[Country, None]:
+    def get_by_name(self, name: str) -> Optional[Country]:
         for country in list(self.__storage.values()):
             if country.name == name:
                 return country

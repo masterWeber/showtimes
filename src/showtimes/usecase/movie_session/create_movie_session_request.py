@@ -1,6 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass
-from typing import Union
+from typing import Optional
 
 from src.showtimes.domain.movie.movie_id import MovieId
 from src.showtimes.domain.time_interval.time_interval_id import TimeIntervalId
@@ -10,13 +10,13 @@ from src.showtimes.domain.time_interval.time_interval_id import TimeIntervalId
 class CreateMovieSessionRequest:
     time_interval_id: TimeIntervalId
     date: date
-    movie_id: Union[MovieId, None]
+    movie_id: Optional[MovieId]
 
     @staticmethod
     def from_(
             time_interval_id: str,
             date_: date,
-            movie_id: Union[str, None] = None,
+            movie_id: Optional[str] = None,
     ) -> CreateMovieSessionRequest:
         movie_id = None if movie_id is None else MovieId(movie_id)
 

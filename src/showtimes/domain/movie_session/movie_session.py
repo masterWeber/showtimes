@@ -1,6 +1,6 @@
 from __future__ import annotations
 from datetime import date
-from typing import Union
+from typing import Optional
 
 from src.common.entity import Entity
 from src.showtimes.domain.time_interval.time_interval import TimeInterval
@@ -12,7 +12,7 @@ from src.showtimes.domain.movie_session.movie_session_id_generator import MovieS
 class MovieSession(Entity):
     __id: MovieSessionId
     __date: date
-    __movie: Union[Movie, None]
+    __movie: Optional[Movie]
     __interval: TimeInterval
 
     def __init__(
@@ -32,7 +32,7 @@ class MovieSession(Entity):
         return self.__id
 
     @property
-    def movie(self) -> Union[Movie, None]:
+    def movie(self) -> Optional[Movie]:
         return self.__movie
 
     @movie.setter
@@ -60,7 +60,7 @@ class MovieSession(Entity):
             id_generator: MovieSessionIdGenerator,
             interval: TimeInterval,
             date_: date,
-            movie: Union[Movie, None] = None
+            movie: Optional[Movie] = None
     ) -> MovieSession:
         return MovieSession(id_generator.generate(), interval, date_, movie)
 

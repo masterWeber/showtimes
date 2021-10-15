@@ -1,4 +1,4 @@
-from typing import List, Union, Dict
+from typing import List, Dict, Optional
 
 from src.common.event.domain_event_publisher import DomainEventPublisher
 from src.showtimes.domain.movie.director.director import Director
@@ -14,10 +14,10 @@ class InMemoryDirectorRepository(DirectorExtractor, DirectorPersister):
     def __init__(self, event_publisher: DomainEventPublisher):
         self.__eventPublisher = event_publisher
 
-    def get_by_id(self, director_id: DirectorId) -> Union[Director, None]:
+    def get_by_id(self, director_id: DirectorId) -> Optional[Director]:
         return self.__storage.get(director_id)
 
-    def get_by_name(self, name: str) -> Union[Director, None]:
+    def get_by_name(self, name: str) -> Optional[Director]:
         for director in list(self.__storage.values()):
             if director.name == name:
                 return director

@@ -1,6 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass
-from typing import List, Union
+from typing import List, Optional
 
 from src.showtimes.domain.movie.director.director_id import DirectorId
 from src.showtimes.domain.movie.genre.genre_id import GenreId
@@ -11,25 +11,25 @@ from src.showtimes.domain.movie.rating.rating_id import RatingId
 class CreateMovieRequest:
     name: str
     duration: int
-    year: Union[int, None]
+    year: Optional[int]
     genre_ids: List[GenreId]
     rating_ids: List[RatingId]
-    description: Union[str, None]
-    director_id: Union[DirectorId, None]
-    poster: Union[str, None]
-    trailer: Union[str, None]
+    description: Optional[str]
+    director_id: Optional[DirectorId]
+    poster: Optional[str]
+    trailer: Optional[str]
 
     @staticmethod
     def from_(
             name: str,
             duration: int,
-            year: Union[int, None] = None,
+            year: Optional[int] = None,
             genre_ids: List[int] = [],
             rating_ids: List[int] = [],
-            description: Union[str, None] = None,
-            director_id: Union[str, None] = None,
-            poster: Union[str, None] = None,
-            trailer: Union[str, None] = None
+            description: Optional[str] = None,
+            director_id: Optional[str] = None,
+            poster: Optional[str] = None,
+            trailer: Optional[str] = None
     ) -> CreateMovieRequest:
         director_id = None if director_id is None else DirectorId(director_id)
 

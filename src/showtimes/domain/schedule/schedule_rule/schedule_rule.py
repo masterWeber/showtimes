@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Union
+from typing import Optional
 
 from src.common.entity import Entity
 from src.showtimes.domain.time_interval.time_interval import TimeInterval
@@ -14,14 +14,14 @@ class ScheduleRule(Entity):
     __id: ScheduleRuleId
     __time_interval: TimeInterval
     __date: DateRule
-    __weekday: Union[Weekday, None]
+    __weekday: Optional[Weekday]
 
     def __init__(
             self,
             id_: ScheduleRuleId,
             time_interval: TimeInterval,
             date_: DateRule,
-            weekday: Union[Weekday, None] = None
+            weekday: Optional[Weekday] = None
     ) -> None:
         self.__id = id_
         self.__time_interval = time_interval
@@ -49,7 +49,7 @@ class ScheduleRule(Entity):
         self.__date = date_
 
     @property
-    def weekday(self) -> Union[Weekday, None]:
+    def weekday(self) -> Optional[Weekday]:
         return self.__weekday
 
     @weekday.setter
@@ -61,7 +61,7 @@ class ScheduleRule(Entity):
             id_generator: ScheduleRuleIdGenerator,
             time_interval: TimeInterval,
             date_: DateRule,
-            weekday: Union[Weekday, None] = None
+            weekday: Optional[Weekday] = None
     ) -> ScheduleRule:
         return ScheduleRule(
             id_generator.generate(),

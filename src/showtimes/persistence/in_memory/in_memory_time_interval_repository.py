@@ -1,4 +1,4 @@
-from typing import List, Union, Dict
+from typing import List, Dict, Optional
 
 from src.common.event.domain_event_publisher import DomainEventPublisher
 from src.showtimes.domain.time_interval.time_interval import TimeInterval
@@ -13,7 +13,7 @@ class InMemoryTimeIntervalRepository(TimeIntervalExtractor, TimeIntervalPersiste
     def __init__(self, event_publisher: DomainEventPublisher):
         self.__eventPublisher = event_publisher
 
-    def get_by_id(self, time_interval_id: TimeIntervalId) -> Union[TimeInterval, None]:
+    def get_by_id(self, time_interval_id: TimeIntervalId) -> Optional[TimeInterval]:
         return self.__storage.get(time_interval_id)
 
     def get_all(self) -> List[TimeInterval]:

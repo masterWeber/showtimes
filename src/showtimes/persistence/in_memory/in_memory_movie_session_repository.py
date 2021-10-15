@@ -1,4 +1,4 @@
-from typing import List, Union, Dict
+from typing import List, Dict, Optional
 
 from src.common.event.domain_event_publisher import DomainEventPublisher
 from src.showtimes.domain.movie_session.movie_session import MovieSession
@@ -14,7 +14,7 @@ class InMemoryMovieSessionRepository(MovieSessionExtractor, MovieSessionPersiste
     def __init__(self, event_publisher: DomainEventPublisher):
         self.__eventPublisher = event_publisher
 
-    def get_by_id(self, movie_session_id: MovieSessionId) -> Union[MovieSession, None]:
+    def get_by_id(self, movie_session_id: MovieSessionId) -> Optional[MovieSession]:
         return self.__storage.get(movie_session_id)
 
     def get_all(self) -> List[MovieSession]:

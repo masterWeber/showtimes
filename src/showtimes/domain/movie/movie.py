@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import List, Union
+from typing import List, Optional
 
 from src.common.entity import Entity
 from src.showtimes.domain.movie.country.country import Country
@@ -18,10 +18,10 @@ class Movie(Entity):
     __countries: List[Country] = []
     __genres: List[Genre] = []
     __ratings: List[Rating] = []
-    __description: Union[str, None]
-    __director: Union[Director, None]
-    __poster: Union[str, None]
-    __trailer: Union[str, None]
+    __description: Optional[str]
+    __director: Optional[Director]
+    __poster: Optional[str]
+    __trailer: Optional[str]
 
     def __init__(
             self,
@@ -80,7 +80,7 @@ class Movie(Entity):
         return self.__description
 
     @description.setter
-    def description(self, description: Union[str, None]) -> None:
+    def description(self, description: Optional[str]) -> None:
         self.__description = description
 
     @property
@@ -106,27 +106,27 @@ class Movie(Entity):
         self.__countries.append(country)
 
     @property
-    def director(self) -> Union[Director, None]:
+    def director(self) -> Optional[Director]:
         return self.__director
 
     @director.setter
-    def director(self, director: Union[Director, None]) -> None:
+    def director(self, director: Optional[Director]) -> None:
         self.__director = director
 
     @property
-    def poster(self) -> Union[str, None]:
+    def poster(self) -> Optional[str]:
         return self.__poster
 
     @poster.setter
-    def poster(self, poster: Union[str, None]) -> None:
+    def poster(self, poster: Optional[str]) -> None:
         self.__poster = poster
 
     @property
-    def trailer(self) -> Union[str, None]:
+    def trailer(self) -> Optional[str]:
         return self.__trailer
 
     @trailer.setter
-    def trailer(self, trailer: Union[str, None]) -> None:
+    def trailer(self, trailer: Optional[str]) -> None:
         self.__trailer = trailer
 
     @staticmethod

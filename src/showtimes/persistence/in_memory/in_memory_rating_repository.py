@@ -1,4 +1,4 @@
-from typing import List, Union, Dict
+from typing import List, Dict, Optional
 
 from src.common.event.domain_event_publisher import DomainEventPublisher
 from src.showtimes.domain.movie.rating.rating import Rating
@@ -14,10 +14,10 @@ class InMemoryRatingRepository(RatingExtractor, RatingPersister):
     def __init__(self, event_publisher: DomainEventPublisher):
         self.__eventPublisher = event_publisher
 
-    def get_by_id(self, rating_id: RatingId) -> Union[Rating, None]:
+    def get_by_id(self, rating_id: RatingId) -> Optional[Rating]:
         return self.__storage.get(rating_id)
 
-    def get_by_name(self, name: str) -> Union[Rating, None]:
+    def get_by_name(self, name: str) -> Optional[Rating]:
         for rating in list(self.__storage.values()):
             if rating.name == name:
                 return rating

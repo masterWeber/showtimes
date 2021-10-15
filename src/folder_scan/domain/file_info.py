@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Union
+from typing import Optional
 
 from src.common.entity import Entity
 from src.folder_scan.domain.file_info_id import FileInfoId
@@ -15,7 +15,7 @@ class FileInfo(Entity):
     __ext: VideoExt
     __size: int
     __duration: int
-    __movie_id: Union[MovieId, None]
+    __movie_id: Optional[MovieId]
 
     def __init__(
             self,
@@ -24,7 +24,7 @@ class FileInfo(Entity):
             ext: VideoExt,
             size: int,
             duration: int,
-            movie_id: Union[MovieId, None]
+            movie_id: Optional[MovieId]
     ) -> None:
         self.__id = id_
         self.__name = name
@@ -70,11 +70,11 @@ class FileInfo(Entity):
         self.__duration = duration
 
     @property
-    def movie_id(self) -> Union[MovieId, None]:
+    def movie_id(self) -> Optional[MovieId]:
         return self.__movie_id
 
     @movie_id.setter
-    def movie_id(self, movie_id: Union[MovieId, None]) -> None:
+    def movie_id(self, movie_id: Optional[MovieId]) -> None:
         self.__movie_id = movie_id
 
     @staticmethod
@@ -84,7 +84,7 @@ class FileInfo(Entity):
             ext: VideoExt,
             size: int,
             duration: int,
-            movie_id: Union[MovieId, None] = None
+            movie_id: Optional[MovieId] = None
     ) -> FileInfo:
         return FileInfo(
             id_generator.generate(),
