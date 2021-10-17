@@ -14,3 +14,7 @@ class TimeIntervalExtractor(ABC):
     @abstractmethod
     def get_all(self) -> List[TimeInterval]:
         pass
+
+    @abstractmethod
+    def exists(self, time_interval_id: TimeIntervalId) -> bool:
+        pass

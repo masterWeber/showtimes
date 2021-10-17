@@ -21,3 +21,6 @@ class InMemoryTimeIntervalRepository(TimeIntervalExtractor, TimeIntervalPersiste
 
     def save(self, time_interval: TimeInterval) -> None:
         self.__storage[time_interval.id] = time_interval
+
+    def exists(self, time_interval_id: TimeIntervalId) -> bool:
+        return bool(self.get_by_id(time_interval_id))
