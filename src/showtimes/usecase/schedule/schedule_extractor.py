@@ -14,3 +14,6 @@ class ScheduleExtractor(ABC):
     @abstractmethod
     def get_all(self) -> List[Schedule]:
         pass
+
+    def exists(self, schedule_id: ScheduleId) -> bool:
+        pass

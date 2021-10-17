@@ -23,3 +23,6 @@ class InMemoryScheduleRepository(ScheduleExtractor, SchedulePersister):
     def save(self, schedule: Schedule) -> None:
         self.__eventPublisher.publish(schedule.pop_events())
         self.__storage[schedule.id] = schedule
+
+    def exists(self, schedule_id: ScheduleId) -> bool:
+        return bool(self.get_by_id(schedule_id))
