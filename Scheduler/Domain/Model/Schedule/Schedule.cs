@@ -3,8 +3,9 @@ using Showtimes.Scheduler.Domain.Model.Schedule.MovieSession;
 
 namespace Showtimes.Scheduler.Domain.Model.Schedule
 {
-    public class Schedule : Entity, IEquatable<Schedule>
+    public class Schedule : IEntity, IEquatable<Schedule>
     {
+        public IIdentity Id => ScheduleId;
         public ScheduleId ScheduleId { get; }
         public string Name { get; private set; }
 

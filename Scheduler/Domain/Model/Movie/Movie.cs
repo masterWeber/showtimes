@@ -2,8 +2,9 @@ using Showtimes.Common.Domain.Model;
 
 namespace Showtimes.Scheduler.Domain.Model.Movie
 {
-    public class Movie : Entity, IEquatable<Movie>
+    public class Movie : IEntity, IEquatable<Movie>
     {
+        public IIdentity Id => MovieId;
         public MovieId MovieId { get; }
         public string Name { get; private set; }
         public string Description { get; private set; }

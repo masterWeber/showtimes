@@ -1,4 +1,3 @@
-using Showtimes.Scheduler.Domain.Model.Schedule.MovieSession;
 using Showtimes.Scheduler.Domain.Model.Schedule.Rule;
 
 namespace Showtimes.Scheduler.Domain.Model.Schedule

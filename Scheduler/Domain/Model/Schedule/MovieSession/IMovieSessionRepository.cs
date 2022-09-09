@@ -1,9 +1,8 @@
+using Showtimes.Common.Domain.Model;
+
 namespace Showtimes.Scheduler.Domain.Model.Schedule.MovieSession
 {
-    public interface IMovieSessionRepository
+    public interface IMovieSessionRepository : IRepository<MovieSession, MovieSessionId>
     {
-        MovieSession Get(MovieSessionId movieSessionId);
-        MovieSessionId GetNextIdentity();
-        void Save(MovieSession movieSession);
     }
 }
