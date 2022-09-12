@@ -7,13 +7,19 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Styling;
 
-namespace Scheduler.Desktop.Pages
+namespace Scheduler.Desktop.Pages;
+
+public partial class SettingsPage : UserControl
 {
-    public partial class SettingsPage : UserControl
-    {
+    private const double AdaptiveTriggerWidth = 665;
+
+    private CancellationTokenSource? _cancellationTokenSource;
+    private readonly Control? _headerRightContent;
+    private bool _isInSmallMode;
+
     public SettingsPage()
     {
-        this.InitializeComponent();
+        InitializeComponent();
 
         _headerRightContent = this.FindControl<Control>("HeaderRightContent");
     }
@@ -27,44 +33,39 @@ namespace Scheduler.Desktop.Pages
     {
         base.OnPropertyChanged(change);
 
-        if (change.Property == BoundsProperty)
-        {
-            if (_headerRightContent != null)
-                HandleAdaptiveWidth(change.GetNewValue<Rect>().Width);
-        }
+        if (change.Property == BoundsProperty) HandleAdaptiveWidth(change.GetNewValue<Rect>().Width);
     }
 
-    private async void HandleAdaptiveWidth(double width)
+    private void HandleAdaptiveWidth(double width)
     {
-        if (width < _adaptiveTriggerWidth && !_isInSmallMode)
+        switch (width)
         {
-            _isInSmallMode = true;
-            Grid.SetColumn(_headerRightContent, 0);
-            Grid.SetRow(_headerRightContent, 1);
-            _headerRightContent.Opacity = 0;
+            case < AdaptiveTriggerWidth when !_isInSmallMode:
+                _isInSmallMode = true;
+                Grid.SetColumn(_headerRightContent ?? throw new InvalidOperationException(), 0);
+                Grid.SetRow(_headerRightContent, 1);
+                _headerRightContent.Opacity = 0;
 
-            RunConnectedAnimation(300, -75);
-        }
-        else if (width > _adaptiveTriggerWidth && _isInSmallMode)
-        {
-            _isInSmallMode = false;
-            Grid.SetColumn(_headerRightContent, 1);
-            Grid.SetRow(_headerRightContent, 0);
-            _headerRightContent.Opacity = 0;
+                RunConnectedAnimation(300, -75);
+                break;
+            case > AdaptiveTriggerWidth when _isInSmallMode:
+                _isInSmallMode = false;
+                Grid.SetColumn(_headerRightContent ?? throw new InvalidOperationException(), 1);
+                Grid.SetRow(_headerRightContent, 0);
+                _headerRightContent.Opacity = 0;
 
-            RunConnectedAnimation(-175, 45);
+                RunConnectedAnimation(-175, 45);
+                break;
         }
     }
 
     private async void RunConnectedAnimation(double startX, double startY)
     {
-        if (_cts != null)
-        {
-            _cts?.Cancel();
-            _cts?.Dispose();
-            _headerRightContent.Opacity = 1;
-            _cts = null;
-        }
+        _cancellationTokenSource?.Cancel();
+        _cancellationTokenSource?.Dispose();
+        if (_headerRightContent == null) return;
+        _headerRightContent.Opacity = 1;
+        _cancellationTokenSource = null;
 
         var ani = new Animation
         {
@@ -91,21 +92,15 @@ namespace Scheduler.Desktop.Pages
                         new Setter(TranslateTransform.XProperty, 0d),
                         new Setter(TranslateTransform.YProperty, 0d)
                     },
-                    KeySpline = new KeySpline(0,0,0,1)
+                    KeySpline = new KeySpline(0, 0, 0, 1)
                 }
             }
         };
 
-        _cts = new CancellationTokenSource();
-        await ani.RunAsync(_headerRightContent, null, cancellationToken: _cts.Token);
-        _cts.Dispose();
-        _cts = null;
+        _cancellationTokenSource = new CancellationTokenSource();
+        await ani.RunAsync(_headerRightContent, null, _cancellationTokenSource.Token);
+        _cancellationTokenSource.Dispose();
+        _cancellationTokenSource = null;
         _headerRightContent.Opacity = 1;
-    }
-
-    private CancellationTokenSource _cts;
-    private bool _isInSmallMode;
-    private Control _headerRightContent;
-    private readonly double _adaptiveTriggerWidth = 665;
     }
 }
