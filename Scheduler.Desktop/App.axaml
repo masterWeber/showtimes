@@ -4,5 +4,12 @@
              x:Class="Scheduler.Desktop.App">
     <Application.Styles>
         <styling:FluentAvaloniaTheme />
+
+        <StyleInclude Source="/Styles/OptionsDisplayItemStyles.axaml" />
+        <Style Selector="MenuFlyoutPresenter /template/ Border#LayoutRoot">
+            <Setter Property="Background">
+                <SolidColorBrush Color="{DynamicResource SolidBackgroundFillColorBase}" Opacity="0.725" />
+            </Setter>
+        </Style>
     </Application.Styles>
 </Application>
